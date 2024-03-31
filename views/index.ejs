@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Vagas Disponíveis</title>
+
+</head>
+
+<body>
+
+    <h1>Vagas Disponíveis:</h1>
+
+    <ul>
+
+        <% vagas.forEach(function(vaga) { %>
+            <li>
+                <h2> ID: <%= vaga.id %> <%= vaga.titulo %></h2>
+                <p>Conhecimentos necessários: <%= vaga.conhecimentos.join(', ') %></p>
+                <p>Remuneração: R$ <%= vaga.remuneracao %></p>
+                <p>Benefícios: <%= vaga.beneficios.join(', ') %></p>
+                <p>Status: <%= vaga.status %></p>
+
+            </li>
+
+        <% }); %>
+    </ul>
+
+</body>
+
+</html>
