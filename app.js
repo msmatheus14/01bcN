@@ -110,17 +110,12 @@ function atualizarvaga(id, titulo, conhecimentos, remuneracao, beneficios, statu
 }
 
 
-app.put('/atualizar-vaga', (req, res) => {
+app.post('/atualizar-vaga', (req, res) => {
 
     const { id, titulo, conhecimentos, remuneracao, beneficios, status } = req.body;
-     if(atualizarvaga(id, titulo, conhecimentos, remuneracao, beneficios, status))
-     {
 
-     }
-     else
-     {
-        res.status(404).send('Valor não encontrado amigo')
-     }
+     atualizarvaga(id, titulo, conhecimentos, remuneracao, beneficios, status)
+    
 
     res.redirect('/vagas');
 
