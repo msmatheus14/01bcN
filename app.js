@@ -1,17 +1,17 @@
 const express = require ('express')
 const app = express()
-app.use(express.urlencoded({ extended: true }));
 const porta = 3000
 
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'))
 app.set('view engine', 'ejs')
 
 
-const vagas = []
 
 function adicionarVaga(id,titulo,conhecimentos,remuneracao,beneficios,status){
-    let vaga = {
 
+    let vaga = {
+        
         id:id,
         titulo:titulo,
         conhecimentos:conhecimentos,
@@ -19,14 +19,14 @@ function adicionarVaga(id,titulo,conhecimentos,remuneracao,beneficios,status){
         beneficios:beneficios,
         status:status
     }
-
+    
     vagas.push(vaga)
 }
 
+const vagas = []
+
 adicionarVaga(1, "Desenvolvedor Frontend", ["HTML", "CSS", "JavaScript"], 5000, ["Plano de saúde", "Vale refeição"], "ativo");
-
 adicionarVaga(2, "Desenvolvedor Backend", ["Node.js", "Express", "MongoDB"], 6000, ["Plano de saúde", "Vale alimentação"], "ativo");
-
 adicionarVaga(3, "Analista de Dados", ["SQL", "Python", "Machine Learning"], 7000, ["Plano de saúde", "Bônus anual"], "ativo");
 
 
@@ -34,6 +34,8 @@ app.get('/vagas', (req,res) => {
     res.render('index', {vagas: vagas})
 })
 
+
+//Implementei um ID que é passado como parâmetro para ele a Vaga com ID específico.
 app.get('/vagas/:id', (req,res) => {
 
     const id = parseInt (req.params.id)
@@ -41,7 +43,7 @@ app.get('/vagas/:id', (req,res) => {
 
     if(!vaga) {
 
-        res.status(404).send('<img src="https://images.emojiterra.com/twitter/512px/1f641.png">');
+        res.status(404).send('<h1> ID não encontrado </h1> <img src="https://images.emojiterra.com/twitter/512px/1f641.png">');
 
     }
     else
@@ -60,6 +62,7 @@ app.get('/criar-vaga', (req, res) => {
 
 
 app.post('/criar-vaga', (req, res) => {
+
     const { id, titulo, conhecimentos, remuneracao, beneficios, status } = req.body
 
     adicionarVaga(id, titulo, conhecimentos.split(','), remuneracao, beneficios.split(','), status);
@@ -68,22 +71,12 @@ app.post('/criar-vaga', (req, res) => {
     
 });
 
-app.listen(porta, ()=> {
-
-    console.log('Servidor rodando na porta 3000')
-})
-
-app.get('/atualizar-vaga', (req, res) => {
-
-    res.render('atualizarvaga');
-});
-
 function atualizarvaga(id, titulo, conhecimentos, remuneracao, beneficios, status)
  {
     let encontrado = false
 
     for (let i = 0; i < vagas.length; i++)
-     {
+    {
         if (vagas[i].id == parseInt(id)) {
 
             encontrado = true
@@ -109,19 +102,22 @@ function atualizarvaga(id, titulo, conhecimentos, remuneracao, beneficios, statu
     }
 }
 
-
-app.post('/atualizar-vaga', (req, res) => {
+app.put('/atualizar-vaga/:id/', (req, res) => {
 
     const { id, titulo, conhecimentos, remuneracao, beneficios, status } = req.body;
-
-     atualizarvaga(id, titulo, conhecimentos, remuneracao, beneficios, status)
     
+     if(atualizarvaga(id, titulo, conhecimentos, remuneracao, beneficios, status))
+     
 
     res.redirect('/vagas');
 
 });
 
 
+app.listen(porta, ()=> {
+
+    console.log('Servidor rodando na porta 3000')
+})
 
 
  
