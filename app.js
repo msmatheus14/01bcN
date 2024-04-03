@@ -1,7 +1,5 @@
 
-//Ao testar as requições da API no postman, favor use x-www-form-urlencoded
-
-
+//Professor ao testar as requições da API no postman, favor use x-www-form-urlencoded
 
 
 const express = require('express')
@@ -12,19 +10,11 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'))
 app.set('view engine', 'ejs')
 
-
 const vagas = []
-
-//Iniciei o programa com 3 vagas nativas.
-adicionarVaga(1, "Desenvolvedor Frontend", ["HTML", "CSS", "JavaScript"], 5000, ["Plano de saúde", "Vale refeição"], "ativo");
-adicionarVaga(2, "Desenvolvedor Backend", ["Node.js", "Express", "MongoDB"], 6000, ["Plano de saúde", "Vale alimentação"], "ativo");
-adicionarVaga(3, "Analista de Dados", ["SQL", "Python", "Machine Learning"], 7000, ["Plano de saúde", "Bônus anual"], "ativo");
-
 
 app.get('/vagas', (req,res) => {
     res.render('index', {vagas: vagas})
 })
-
 
 app.get('/vagas/:id', (req,res) => {
 
@@ -32,8 +22,8 @@ app.get('/vagas/:id', (req,res) => {
     const vaga = vagas.find(vaga => vaga.id === id)
 
     if(!vaga) {
-        //Adicionei um emoji triste quando o sistema não encontra uma vaga com o ID.
-        res.status(404).send('<h1> Vaga não encontrada </h1> <img src="https://images.emojiterra.com/twitter/512px/1f641.png">');
+        
+        res.status(404).send('<h1> ERRO 404! NÃO ENCONTRADO </h1>">');
 
     }
     else
@@ -71,8 +61,6 @@ let output = {
 
     
 });
-
-
 
 function adicionarVaga(id,titulo,conhecimentos,remuneracao,beneficios,status){
 
