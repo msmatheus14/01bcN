@@ -4,16 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        
+    </style>
 </head>
 <body>
-    <h1>Matheus Andrade - Buscas</h1>
-    <h1>Resultados das vagas:</h1>
+    
+    <h1>Vaga Adicionada com sucesso!</h1>
 
     <p>ID: <%= vaga.id%></p>
     <p>Título: <%= vaga.titulo %></p>
-    <p>Conhecimentos necessários: <%= vaga.conhecimentos.join(', ') %></p>
+    <p>Conhecimentos necessários: <%= vaga.conhecimentos%></p>
     <p>Remuneração: R$ <%= vaga.remuneracao%></p>
-    <p>Benefícios: <%= vaga.beneficios.join(', ') %></p>
+    <p>Benefícios: <%= vaga.beneficios%></p>
     <p>Status: <%= vaga.status %></p>
     
 </body>
