@@ -5,19 +5,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        
+       html{
+            height: 100%;
+            width: 100%;
+        }
+        body{
+            display: flex;
+            justify-content: center;
+            font-family: Arial, Helvetica, sans-serif;
+            
+            
+        }
+        .container{
+
+            width: 80%;
+            height: 100%;
+            background: linear-gradient(rgba(184, 223, 76, 0.4), rgba(120, 27, 143, 0.7));
+            padding: 30px;
+            overflow: auto;
+            border-radius: 20px;
+            box-shadow: 2px 2px 2px black;
+        }
+
+        .container h1 {
+            font-style: italic;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .container h2:hover{
+            color: blueviolet;
+        }
     </style>
 </head>
 <body>
-    
-    <h1>Vaga Adicionada com sucesso!</h1>
 
-    <p>ID: <%= vaga.id%></p>
-    <p>Título: <%= vaga.titulo %></p>
-    <p>Conhecimentos necessários: <%= vaga.conhecimentos%></p>
-    <p>Remuneração: R$ <%= vaga.remuneracao%></p>
-    <p>Benefícios: <%= vaga.beneficios%></p>
-    <p>Status: <%= vaga.status %></p>
-    
+    <div class="container">
+
+        <h1>Vaga Adicionada com sucesso!</h1>
+
+        <p>ID: <%= vaga.id %></p>
+        <p>Título: <%= vaga.titulo %></p>
+        <p>Conhecimentos necessários: <%= vaga.conhecimentos %></p>
+        <p>Remuneração: R$ <%= vaga.remuneracao %></p>
+        <p>Benefícios: <%= vaga.beneficios %></p>
+        <p>Status: <%= vaga.status %></p>
+
+    </div>
+   
 </body>
 </html>
