@@ -10,27 +10,29 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'))
 app.set('view engine', 'ejs')
 
+
 const vagas = []
+
+
+
 
 app.get('/vagas', (req,res) => {
     res.render('index', {vagas: vagas})
 })
 
+
 app.get('/vagas/:id', (req,res) => {
 
     const id = parseInt (req.params.id)
-    const vaga = vagas.find(vaga => vaga.id === id)
-
-    if(!vaga) {
-        
-        res.status(404).send('<h1> ERRO 404! NÃO ENCONTRADO </h1>">');
-
+    let vaga = 0
+    
+    for(let i = 0; i< vagas.length;i++){
+        if(vagas[i].id == id){
+            vaga = vagas[i]
+        }
     }
-    else
-    {
-        res.status(200)
-        res.render('vaga-busca', {vaga: vaga})
-    }
+
+    res.render("vaga-busca", {vaga:vaga})
 
     
 })
@@ -61,6 +63,8 @@ let output = {
 
     
 });
+
+
 
 function adicionarVaga(id,titulo,conhecimentos,remuneracao,beneficios,status){
 
